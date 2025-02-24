@@ -20,6 +20,7 @@
 
         static void LinearS(int[] array, Random r,int s)
         {
+            Console.WriteLine("-------This is linear search-------\n\n");
             List<int> iList = new List<int>();
             
             
@@ -31,23 +32,35 @@
                 }
             }
 
-            Console.WriteLine($"There are numbers with value - {s} - at {String.Join(",", iList)}");
-            Console.WriteLine($"The array is [{String.Join(",", array)}]");
+            Console.WriteLine($"There are numbers with value - {s} - {(iList.Count == 0 ? "No such number in the list" : "at" + String.Join(",", iList))} ");
+            Console.WriteLine($"The array is [{String.Join(",", array)}]'\n\n");
         }
         static void BinaryS(int[] array, Random r,int s)
         {
+            Console.WriteLine("-------This is binary search-------\n\n");
             List<int> iList = new List<int>();
+
             
-            
-            for (int i = 0; i < array.Length; i++)
+            int left = 0;
+            int right = array.Length - 1;
+
+            while(left <= right)
             {
-                if (array[i] == s)
+                int mid = left + (right - left) / 2;
+                if(array[left] == s)
                 {
-                    iList.Add(i);
+                    iList.Add(left);
+                }else if (array[mid] < s)
+                {
+                    left = mid + 1;
+                }
+                else
+                {
+                    right = mid - 1;
                 }
             }
 
-            Console.WriteLine($"There are numbers with value - {s} - at {String.Join(",", iList)}");
+            Console.WriteLine($"There are numbers with value - {s} - {(iList.Count == 0 ? "No such number in the list" : "at" + String.Join(",", iList))}");
             Console.WriteLine($"The array is [{String.Join(",", array)}]");
         }
     }
